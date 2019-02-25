@@ -10,7 +10,6 @@ package main
 import (
 	"fmt"
 	"math"
-	"os"
 )
 
 const (
@@ -49,7 +48,7 @@ func corner(i, j int) (float64, float64, bool) {
 	y := xyrange * (float64(j)/cells - 0.5)
 
 	// Compute surface height z.
-	z := f(x, y)
+	z := saddle(x, y)
 
 	if math.IsNaN(z) {
 		return 0, 0, false
@@ -64,6 +63,14 @@ func corner(i, j int) (float64, float64, bool) {
 func f(x, y float64) float64 {
 	r := math.Hypot(x, y) // distance from (0,0)
 	return math.Sin(r) / r
+}
+
+func eggbox(x, y float64) float64 {
+	return (math.Sin(x) + math.Sin(y)) * 0.1
+}
+
+func saddle(x, y float64) float64 {
+	return (math.Pow(x, 2) - math.Pow(y, 2)) * 3e-3
 }
 
 //!-
