@@ -8,6 +8,9 @@ func comma(s string) string {
 	if n <= 3 {
 		return s
 	}
+	if n == 4 && (s[0] == '+' || s[0] == '-') {
+		return s
+	}
 	return comma(s[:n-3]) + "," + s[n-3:]
 }
 
@@ -21,5 +24,5 @@ func commaf(s string) string {
 }
 
 func main() {
-	fmt.Println(commaf("23893248.93423843233892"))
+	fmt.Println(commaf("-22423893248.93423843233892"))
 }
