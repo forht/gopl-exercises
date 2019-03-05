@@ -14,12 +14,12 @@ func comma(s string) string {
 func commaf(s string) string {
 	dot := strings.LastIndex(s, ".")
 	if dot != -1 {
-		return comma(s[:dot-1]) + "." + comma(s[dot+1:])
+		return comma(s[:dot-1]) + "." + s[dot+1:]
 	} else {
 		return comma(s)
 	}
 }
 
 func main() {
-	fmt.Println(commaf("2389324893423843233892"))
+	fmt.Println(commaf("23893248.93423843233892"))
 }
