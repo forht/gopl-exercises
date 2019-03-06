@@ -32,5 +32,4 @@ func main() {
 	default:
 		log.Fatal("Usage: sumstdin -f hashfunc")
 	}
-
 }
