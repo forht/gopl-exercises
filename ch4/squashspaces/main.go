@@ -11,7 +11,7 @@ func squashSpaces(s []byte) []byte {
 	j := 0
 	for i < len(s) {
 		r, l := utf8.DecodeRune(s[i:])
-		if r != utf8.RuneError {
+		if !(r == utf8.RuneError && l == 1) {
 			if !unicode.IsSpace(r) {
 				copy(s[j:], s[i:i+l])
 				j += l
@@ -35,7 +35,7 @@ func squashSpaces(s []byte) []byte {
 }
 
 func main() {
-	s := []byte("nel\r \n   mezzo \ndel cammin   \r    di")
+	s := []byte("nel\r \n mezzo \ndel cammin \r \uFFFD <\x80> di")
 	s = squashSpaces(s)
-	fmt.Printf("%q", string(s))
+	fmt.Printf("%q\n", string(s))
 }
