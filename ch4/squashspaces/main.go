@@ -35,7 +35,7 @@ func squashSpaces(s []byte) []byte {
 }
 
 func main() {
-	s := []byte("nel   mezzo del cammin       di")
+	s := []byte("nel\r \n   mezzo \ndel cammin   \r    di")
 	s = squashSpaces(s)
 	fmt.Printf("%q", string(s))
 }
